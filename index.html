@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>ForexPulse — Live Rates, Pip Calculator & Alerts</title>
+  <meta name="description" content="Live forex rates, pip/lot calculator, and price alerts. No signup, no broker connection. Free and always on." />
+
+  <!-- Telegram Mini App SDK -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="app">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-title">
+        <span class="logo">💱</span>
+        <h1>ForexPulse</h1>
+      </div>
+      <p class="subtitle">Live rates. Pip math. Instant alerts. No broker login.</p>
+    </header>
+
+    <!-- Tabs -->
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="rates">Rates</button>
+      <button class="tab-btn" data-tab="pip">Pip Calc</button>
+      <button class="tab-btn" data-tab="alerts">Alerts</button>
+    </nav>
+
+    <!-- RATES TAB -->
+    <section id="tab-rates" class="tab-content active">
+
+      <div class="rate-lookup">
+        <div class="pair-inputs">
+          <select id="baseCurrency" class="currency-select"></select>
+          <button id="swapBtn" class="swap-btn" title="Swap">⇄</button>
+          <select id="quoteCurrency" class="currency-select"></select>
+        </div>
+        <button id="getRateBtn" class="primary-btn">Get Rate</button>
+      </div>
+
+      <div id="rateResult" class="rate-result hidden"></div>
+
+      <div class="section-heading">
+        <h2>Convert Amount</h2>
+      </div>
+      <div class="convert-box">
+        <input type="number" id="convertAmount" placeholder="Amount" value="100" step="any" />
+        <button id="convertBtn" class="secondary-btn-solid">Convert</button>
+      </div>
+      <div id="convertResult" class="convert-result hidden"></div>
+
+      <div class="section-heading">
+        <h2>Major Pairs</h2>
+        <button id="refreshRatesBtn" class="refresh-btn" title="Refresh">↻</button>
+      </div>
+
+      <div id="majorPairsList" class="pair-list">
+        <div class="loading">Loading rates…</div>
+      </div>
+
+    </section>
+
+    <!-- PIP CALCULATOR TAB -->
+    <section id="tab-pip" class="tab-content">
+
+      <div class="calc-form">
+        <h2>Pip Value Calculator</h2>
+
+        <label>Currency Pair</label>
+        <div class="pair-inputs">
+          <select id="pipBase" class="currency-select"></select>
+          <span class="pair-slash">/</span>
+          <select id="pipQuote" class="currency-select"></select>
+        </div>
+
+        <label>Lot Size</label>
+        <div class="lot-presets">
+          <button class="lot-btn" data-lot="0.01">Micro (0.01)</button>
+          <button class="lot-btn" data-lot="0.1">Mini (0.1)</button>
+          <button class="lot-btn active" data-lot="1">Standard (1)</button>
+        </div>
+        <input type="number" id="lotSize" placeholder="Custom lot size" value="1" step="any" />
+
+        <button id="calcPipBtn" class="primary-btn">Calculate</button>
+      </div>
+
+      <div id="pipResult" class="pip-result hidden"></div>
+
+      <p class="hint">1 standard lot = 100,000 units · 1 mini lot = 10,000 · 1 micro lot = 1,000</p>
+
+    </section>
+
+    <!-- ALERTS TAB -->
+    <section id="tab-alerts" class="tab-content">
+
+      <div class="alert-form">
+        <h2>Set a New Alert</h2>
+
+        <label>Currency Pair</label>
+        <div class="pair-inputs">
+          <select id="alertBase" class="currency-select"></select>
+          <span class="pair-slash">/</span>
+          <select id="alertQuote" class="currency-select"></select>
+        </div>
+
+        <div class="alert-form-row">
+          <input type="number" id="alertRate" placeholder="Target rate" step="any" />
+          <select id="alertDirection">
+            <option value="above">Above</option>
+            <option value="below">Below</option>
+          </select>
+        </div>
+        <button id="addAlertBtn" class="primary-btn">Set Alert</button>
+        <button id="notifyViaBotBtn" class="secondary-btn hidden">🔔 Also notify me via @FxxPulse_Bot</button>
+        <p class="hint">In-app alerts only fire while this app is open. Tap the button above to also get pinged by our bot — even with your phone locked.</p>
+      </div>
+
+      <div class="section-heading">
+        <h2>Your Alerts</h2>
+      </div>
+
+      <div id="alertsList" class="alerts-list">
+        <p class="empty-state">No alerts yet. Set one above.</p>
+      </div>
+
+    </section>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast hidden"></div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
