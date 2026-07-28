@@ -1,0 +1,475 @@
+:root {
+  --bg: var(--tg-theme-bg-color, #0b1615);
+  --secondary-bg: var(--tg-theme-secondary-bg-color, #12211f);
+  --card-bg: #16302c;
+  --text: var(--tg-theme-text-color, #eef2f0);
+  --hint: var(--tg-theme-hint-color, #8fa8a2);
+  --link: var(--tg-theme-link-color, #f5b342);
+  --gold: #f5b342;
+  --gold-dark: #d99a2b;
+  --teal: #2dd4bf;
+  --green: #34d399;
+  --red: #f87171;
+  --border: rgba(245, 179, 66, 0.12);
+  --button: var(--tg-theme-button-color, #f5b342);
+  --button-text: var(--tg-theme-button-text-color, #0b1615);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  background-image: radial-gradient(circle at 20% 0%, rgba(45, 212, 191, 0.08), transparent 40%),
+                     radial-gradient(circle at 100% 30%, rgba(245, 179, 66, 0.06), transparent 45%);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+}
+
+#app {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px 16px 40px;
+}
+
+/* Header */
+.header {
+  padding: 12px 0 20px;
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo {
+  font-size: 24px;
+}
+
+.header-title h1 {
+  font-size: 22px;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--gold), var(--teal));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  color: var(--hint);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 20px;
+  background: var(--secondary-bg);
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--hint);
+  padding: 10px 4px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.tab-btn.active {
+  background: var(--button);
+  color: var(--button-text);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Section heading */
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 22px 0 10px;
+}
+
+.section-heading h2 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--hint);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.refresh-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  color: var(--gold);
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Rate lookup */
+.rate-lookup {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.pair-inputs {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.currency-select {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 12px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  outline: none;
+  appearance: none;
+  text-align: center;
+}
+
+.currency-select:focus {
+  border-color: var(--gold);
+}
+
+.swap-btn {
+  background: var(--gold);
+  color: var(--button-text);
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  min-width: 34px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pair-slash {
+  color: var(--hint);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.primary-btn {
+  width: 100%;
+  background: var(--button);
+  color: var(--button-text);
+  border: none;
+  padding: 13px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.primary-btn:active {
+  opacity: 0.85;
+}
+
+.secondary-btn {
+  width: 100%;
+  background: transparent;
+  color: var(--teal);
+  border: 1px solid var(--border);
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.secondary-btn.hidden {
+  display: none;
+}
+
+.secondary-btn-solid {
+  background: var(--teal);
+  color: #06201c;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* Rate result */
+.rate-result,
+.convert-result,
+.pip-result {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  margin-top: 12px;
+  text-align: center;
+}
+
+.rate-result.hidden,
+.convert-result.hidden,
+.pip-result.hidden {
+  display: none;
+}
+
+.rate-big {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.rate-sub {
+  color: var(--hint);
+  font-size: 12px;
+}
+
+/* Convert box */
+.convert-box {
+  display: flex;
+  gap: 8px;
+}
+
+.convert-box input {
+  flex: 1;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+}
+
+.convert-box input:focus {
+  border-color: var(--gold);
+}
+
+/* Pair list */
+.pair-list,
+.alerts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pair-card,
+.alert-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pair-card-name {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.pair-card-sub {
+  color: var(--hint);
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+.pair-card-rate {
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--teal);
+}
+
+.loading,
+.empty-state {
+  color: var(--hint);
+  font-size: 13px;
+  text-align: center;
+  padding: 24px 0;
+}
+
+/* Calculator / Alert forms */
+.calc-form,
+.alert-form {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.calc-form h2,
+.alert-form h2 {
+  font-size: 15px;
+  margin-bottom: 14px;
+}
+
+.calc-form label,
+.alert-form label {
+  display: block;
+  font-size: 11px;
+  color: var(--hint);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 6px;
+  margin-top: 14px;
+}
+
+.calc-form label:first-of-type,
+.alert-form label:first-of-type {
+  margin-top: 0;
+}
+
+.calc-form input,
+.alert-form input,
+.alert-form select {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+}
+
+.calc-form input:focus,
+.alert-form input:focus {
+  border-color: var(--gold);
+}
+
+.lot-presets {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.lot-btn {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--hint);
+  padding: 8px 4px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lot-btn.active {
+  background: var(--gold);
+  color: var(--button-text);
+  border-color: var(--gold);
+}
+
+.calc-form button.primary-btn {
+  margin-top: 16px;
+}
+
+.pip-big {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--gold);
+}
+
+.alert-form-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.alert-form-row input {
+  flex: 2;
+}
+
+.alert-form-row select {
+  flex: 1;
+}
+
+.hint {
+  color: var(--hint);
+  font-size: 11px;
+  margin-top: 12px;
+  line-height: 1.4;
+}
+
+/* Alert cards */
+.alert-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.alert-card-title {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.alert-card-sub {
+  color: var(--hint);
+  font-size: 12px;
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: var(--red);
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--gold);
+  color: var(--button-text);
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(245, 179, 66, 0.25);
+  z-index: 999;
+  max-width: 90%;
+  text-align: center;
+}
+
+.toast.hidden {
+  display: none;
+}
